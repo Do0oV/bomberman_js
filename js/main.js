@@ -52,6 +52,9 @@ document.addEventListener("keydown", function(e){
         bomb.style.backgroundImage = "url('./images/bomb.png')";
         bomb.style.display = "block";
 
+        setTimeout(explode, 1500);
+        setTimeout(removeExplosion, 2500);
+
         break;
     }
 }
@@ -91,6 +94,33 @@ function random (){
     }
 }
 
+// EXPLOSION //
+
+function removeExplosion() {
+
+    bomb.style.display = "none";
+}
+
+function explode() {
+    let posBombLeft = bomb.offsetLeft / 50;
+    let posBombTop = bomb.offsetTop / 50;
+    let explosion;
+
+
+        explosion = document.createElement("div");
+        explosion.setAttribute("class", "explosion");
+        map.appendChild(explosion);
+        explosion.style.top = (posBombTop + 1) * 50 + "px";
+        explosion.style.left = posBombLeft * 50 + "px";
+        bomb.style.backgroundImage = "url('./images/explo.png')";
+        explosion.style.backgroundImage = "url('./images/explo.png')";
+        
+
+        /*killEnemy(explosion);
+        killHero(explosion);
+        killBrick(explosion);*/
+
+}
 
 
 
