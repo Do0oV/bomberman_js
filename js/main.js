@@ -10,10 +10,10 @@ document.addEventListener("keydown", function(e){
     let heroTop = hero.offsetTop;
     let posBlockLeft = hero.offsetLeft / 50;
     let posBlockTop = hero.offsetTop / 50;
-    console.log('up ' + grille[posBlockTop - 1][posBlockLeft]);
+    /*console.log('up ' + grille[posBlockTop - 1][posBlockLeft]);
     console.log('right ' +grille[posBlockTop][posBlockLeft + 1]);
     console.log('down ' + grille[posBlockTop + 1][posBlockLeft]);
-    console.log('left ' + grille[posBlockTop][posBlockLeft - 1]);
+    console.log('left ' + grille[posBlockTop][posBlockLeft - 1]);*/
 
 
     if (controlActive) {
@@ -22,7 +22,7 @@ document.addEventListener("keydown", function(e){
         switch (e.keyCode) {
         //UP
         case 38:
-        console.log('up');
+        //console.log('up');
         if(grille[posBlockTop - 1][posBlockLeft] === 0){
             hero.style.top = (posBlockTop - 1) * 50 + "px";
             hero.style.backgroundImage = "url('./images/hero_back.png')";
@@ -31,7 +31,7 @@ document.addEventListener("keydown", function(e){
         break;
         //RIGHT
         case 39:
-        console.log('right');
+        //console.log('right');
         if(grille[posBlockTop][posBlockLeft + 1] === 0){
             hero.style.left = (posBlockLeft + 1) * 50 + "px";
             hero.style.backgroundImage = "url('./images/hero_right.png')";
@@ -39,7 +39,7 @@ document.addEventListener("keydown", function(e){
         break;
         //DOWN
         case 40:
-        console.log('down');
+        //console.log('down');
         if(grille[posBlockTop + 1][posBlockLeft] === 0){
             hero.style.top = (posBlockTop + 1) * 50 + "px";
             hero.style.backgroundImage = "url('./images/hero_front.png')";
@@ -48,7 +48,7 @@ document.addEventListener("keydown", function(e){
         break;
         //LEFT
         case 37:
-        console.log('left');
+        //console.log('left');
         if(grille[posBlockTop][posBlockLeft - 1] === 0){
             hero.style.left = (posBlockLeft - 1) * 50 + "px";
             hero.style.backgroundImage = "url('./images/hero_left.png')";
@@ -57,7 +57,7 @@ document.addEventListener("keydown", function(e){
         break;
                 //BOMB
                 case 32:
-                console.log('bomb');
+                //console.log('bomb');
                 bomb.style.left = heroLeft + "px";
                 bomb.style.top = heroTop + "px";
                 bomb.style.backgroundImage = "url('./images/bomb.png')";
