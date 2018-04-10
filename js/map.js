@@ -1,7 +1,5 @@
 let map = document.getElementById('map');
-window.onload = function() {
-    drawMap();
-} 
+
 
 var grille = [
 [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
@@ -30,23 +28,23 @@ function drawMap(){
 
     for(let i = 0; i < 15; i++ ){
         for(let j=0; j<19;j++){
-            if(grille[i][j] === 1){
+            if(grille[i][j] == 1){
                 frame = document.createElement("div");
                 frame.setAttribute("class", "frame");
                 map.appendChild(frame);
 
             }
-            else if(grille[i][j] === 0){
+            else if(grille[i][j] == 0){
                 floor = document.createElement("div");
                 floor.setAttribute("class", "floor");
                 map.appendChild(floor);
             }
-            else if(grille[i][j] === 2){
+            else if(grille[i][j] == 2){
              brick = document.createElement("div");
              brick.setAttribute("class", "brick");
              map.appendChild(brick);
          }
-         else if(grille[i][j] === 3){
+         else if(grille[i][j] == 3){
             wall = document.createElement("div");
             wall.setAttribute("class", "wall");
             map.appendChild(wall);
