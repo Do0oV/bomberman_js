@@ -4,7 +4,7 @@ body{
     background-size: cover;
 }
 header{
-    font-size: 6em;
+    font-size: 4.5em;
     box-sizing: border-box;
     font-family: 'Audiowide', cursive;
     text-transform: uppercase;
@@ -13,12 +13,12 @@ header{
 }
 img {
     position: fixed;
-    width: 150px;
-    height: 150px;
+    width: 120px;
+    height: 120px;
 }
 .left {
     top:-10px;
-    left: 225px;
+    left: 490px;
 }
 .right {
     top: -10px;
@@ -117,3 +117,12 @@ button {
     height: 50px;
 }
 
+footer {
+    font-family: 'Sedgwick Ave', cursive;
+    margin-top: 10px;
+    background-color: #1C1D21;
+    text-align: center;
+    color: #E8FCFF;
+    font-size: 1.1em;
+    line-height: 2em;
+}
