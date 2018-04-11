@@ -7,6 +7,7 @@ let controlActive = true;
 
 // HERO MOVES//
 document.addEventListener("keydown", function(e){
+    e.preventDefault();
 
     let heroLeft = hero.offsetLeft;
     let heroTop = hero.offsetTop;
