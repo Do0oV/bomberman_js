@@ -20,6 +20,7 @@
     background-image: url(../images/floor.png);
 }
 .brick {
+
     width: 50px;
     height: 50px;
     position: relative;
@@ -57,5 +58,10 @@
     height: 50px;
     bottom: 50px;
     right: 50px;
+}
+.explosion {
+    position: absolute;
+    width: 50px;
+    height: 50px;
 }
 
