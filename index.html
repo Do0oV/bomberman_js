@@ -3,17 +3,29 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="https://fonts.googleapis.com/css?family=Audiowide" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="./css/style.css">
 	<title>bomberman</title>
 </head>
 <body>
-	<div id="map">
-		     <div id="hero"></div>
-            <div id="bomb"></div>
-            <div id="enemy"></div>
+	<header>
+		<img class="left" src="./images/bombcss.png">
+		Bomberman JS
+		<img class="right" src="./images/bombcss.png"></header>
+		<div id="map">
+			<div id="hero"></div>
+			<div id="bomb"></div>
+			<div id="enemy"></div>
+			<div id="lose">
+				<p>Game Over</p>
+				<button> <a href="index.html">Rejouer</a></button>
+			</div>
+			<div id="win">
+				<p>Vous avez gagné</p>
+				<button> <a href="index.html">Rejouer</a></button>
+			</div>
+		</div>
 
-
-	</div>
 
 		<script src="./js/map.js"></script>
 		<script src="./js/main.js"></script>

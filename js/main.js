@@ -1,5 +1,6 @@
 
 let hero = document.getElementById('hero');
+let enemy = document.getElementById('enemy');
 let bomb = document.getElementById('bomb');
 let brick = document.getElementsByClassName('brick');
 let controlActive = true;
@@ -21,7 +22,7 @@ document.addEventListener("keydown", function(e){
             hero.style.top = (posBlockTop - 1) * 50 + "px";
             hero.style.backgroundImage = "url('./images/hero_back.png')";
         }
-
+        collision();
         break;
         //RIGHT
         case 39:
@@ -29,6 +30,7 @@ document.addEventListener("keydown", function(e){
             hero.style.left = (posBlockLeft + 1) * 50 + "px";
             hero.style.backgroundImage = "url('./images/hero_right.png')";
         }
+        collision();
         break;
         //DOWN
         case 40:
@@ -36,7 +38,7 @@ document.addEventListener("keydown", function(e){
             hero.style.top = (posBlockTop + 1) * 50 + "px";
             hero.style.backgroundImage = "url('./images/hero_front.png')";
         }
-
+        collision();
         break;
         //LEFT
         case 37:
@@ -44,7 +46,7 @@ document.addEventListener("keydown", function(e){
             hero.style.left = (posBlockLeft - 1) * 50 + "px";
             hero.style.backgroundImage = "url('./images/hero_left.png')";
         }
-
+        collision();
         break;
         //BOMB
         case 32:
@@ -62,41 +64,40 @@ document.addEventListener("keydown", function(e){
 });
 
 // ENEMY MOVES //
-
-let enemy = document.getElementById('enemy');
 random();
 setInterval(random, 300);
 
 function random (){
+    if(enemy.style.display != "none"){ // sinon random continue même si enemy killed
 
-    direction = Math.floor((Math.random() * 4) + 1);
-    let posBlockLeft = enemy.offsetLeft / 50;
-    let posBlockTop = enemy.offsetTop / 50;
-    if(direction == 1 ){
-        if(grille[posBlockTop - 1][posBlockLeft] === 0){
-            enemy.style.top = (posBlockTop - 1) * 50 + "px";
-            enemy.style.backgroundImage = "url('./images/enemy_back.png')";
-        }
-    }else if(direction == 2 ){
-        if(grille[posBlockTop][posBlockLeft + 1] === 0){
-            enemy.style.left = (posBlockLeft + 1) * 50 + "px";
-            enemy.style.backgroundImage = "url('./images/enemy_right.png')";
-        }
-    }else if(direction == 3 ){
-        if(grille[posBlockTop + 1][posBlockLeft] === 0){
-            enemy.style.top = (posBlockTop + 1) * 50 + "px";
-            enemy.style.backgroundImage = "url('./images/enemy_front.png')";
-        }
-    }else if(direction == 4 ){
-        if(grille[posBlockTop][posBlockLeft - 1] === 0){
-            enemy.style.left = (posBlockLeft - 1) * 50 + "px";
-            enemy.style.backgroundImage = "url('./images/enemy_left.png')";
+        direction = Math.floor((Math.random() * 4) + 1);
+        let posBlockLeft = enemy.offsetLeft / 50;
+        let posBlockTop = enemy.offsetTop / 50;
+        if(direction == 1 ){
+            if(grille[posBlockTop - 1][posBlockLeft] === 0){
+                enemy.style.top = (posBlockTop - 1) * 50 + "px";
+                enemy.style.backgroundImage = "url('./images/enemy_back.png')";
+            }
+        }else if(direction == 2 ){
+            if(grille[posBlockTop][posBlockLeft + 1] === 0){
+                enemy.style.left = (posBlockLeft + 1) * 50 + "px";
+                enemy.style.backgroundImage = "url('./images/enemy_right.png')";
+            }
+        }else if(direction == 3 ){
+            if(grille[posBlockTop + 1][posBlockLeft] === 0){
+                enemy.style.top = (posBlockTop + 1) * 50 + "px";
+                enemy.style.backgroundImage = "url('./images/enemy_front.png')";
+            }
+        }else if(direction == 4 ){
+            if(grille[posBlockTop][posBlockLeft - 1] === 0){
+                enemy.style.left = (posBlockLeft - 1) * 50 + "px";
+                enemy.style.backgroundImage = "url('./images/enemy_left.png')";
+            }
         }
     }
 }
 
 // EXPLOSION //
-
 
 // Supprime les explosions
 function removeExplosion() {
@@ -132,9 +133,9 @@ function explode() {
             explosion.style.backgroundImage = "url('./images/explo.png')";
             grille[posBombTop + 1][posBombLeft] = 0;
 
-        /*killEnemy(explosion);
-        killHero(explosion);*/
-        breakBrick(explosion);
+            killEnemy(explosion);
+            killHero(explosion);
+            breakBrick(explosion);
 
         //UP
     }} if (up != 1 )  {
@@ -149,9 +150,9 @@ function explode() {
             explosion.style.backgroundImage = "url('./images/explo.png')";
             grille[posBombTop - 1][posBombLeft] = 0;
 
-        /*killEnemy(explosion);
-        killHero(explosion);*/
-        breakBrick(explosion);
+            killEnemy(explosion);
+            killHero(explosion);
+            breakBrick(explosion);
 
         //RIGHT
     }} if (right != 1  )  {
@@ -167,9 +168,9 @@ function explode() {
             grille[posBombTop][posBombLeft + 1]= 0;
 
 
-        /*killEnemy(explosion);
-        killHero(explosion);*/
-        breakBrick(explosion);
+            killEnemy(explosion);
+            killHero(explosion);
+            breakBrick(explosion);
 
         //LEFT
     }} if (left != 1  )  {
@@ -185,23 +186,73 @@ function explode() {
         grille[posBombTop][posBombLeft - 1] = 0;
 
 
-        /*killEnemy(explosion);
-        killHero(explosion);*/
+        killEnemy(explosion);
+        killHero(explosion);
         breakBrick(explosion);
     }}
 }
 
 // remplace le background par floor si explosion sur brick
 function breakBrick(explosion){
- var brick = document.getElementsByClassName('brick');
+ let brick = document.getElementsByClassName('brick');
 
-    for (var i = brick.length - 1; i >= 0; i--) {
-    var brickLeft = brick[i].offsetLeft / 50;
-    var brickTop = brick[i].offsetTop / 50;
+ for (let i = brick.length - 1; i >= 0; i--) {
+    let brickLeft = brick[i].offsetLeft / 50;
+    let brickTop = brick[i].offsetTop / 50;
 
-        if ((explosion.offsetTop / 50 == brickTop) && (explosion.offsetLeft / 50 == brickLeft)) {
-            brick[i].style.backgroundImage= "url('./images/floor.png')";
+    if ((explosion.offsetTop / 50 == brickTop) && (explosion.offsetLeft / 50 == brickLeft)) {
+        brick[i].style.backgroundImage= "url('./images/floor.png')";
+    }
+}  
+}
+
+function killHero(explosion){
+    let explo = document.getElementsByClassName('explosion');
+    let exploTop = explosion.offsetTop;
+    let exploLeft = explosion.offsetLeft;
+    let heroTop = hero.offsetTop;
+    let heroLeft = hero.offsetLeft;
+    let bombTop = bomb.offsetTop;
+    let bombLeft = bomb.offsetLeft;
+
+    for (var i = explo.length - 1; i >= 0; i--){
+        if ((exploTop === heroTop) && (exploLeft === heroLeft) || (bombTop === heroTop) && (bombLeft === heroLeft) ) {
+
+            hero.style.display = "none";
+            controlActive = false;
+            lose.style.display ='block';
         }
-    }  
+    }
+}
+function killEnemy(explosion){
+    let explo = document.getElementsByClassName('explosion');
+    let exploTop = explosion.offsetTop;
+    let exploLeft = explosion.offsetLeft;
+    let enemyTop = enemy.offsetTop;
+    let enemyLeft = enemy.offsetLeft;
+    let bombTop = bomb.offsetTop;
+    let bombLeft = bomb.offsetLeft;
+
+    for (var i = explo.length - 1; i >= 0; i--){
+        if ((exploTop === enemyTop) && (exploLeft === enemyLeft) || (bombTop === enemyTop) && (bombLeft === enemyLeft) ) {
+
+            enemy.style.display = "none";
+            win.style.display ='block';
+        }
+    }
+}
+
+function collision(){
+    let heroLeft = hero.offsetLeft;
+    let heroTop = hero.offsetTop;
+    let enemyLeft = enemy.offsetLeft;
+    let enemyTop = enemy.offsetTop;
+
+    if (heroTop == enemyTop && heroLeft == enemyLeft) {
+
+        hero.style.display = "none";
+        controlActive = false;
+        lose.style.display ='block';
+    }
 }
 

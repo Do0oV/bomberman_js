@@ -1,9 +1,61 @@
+body{
+    background-image: url(../images/bg.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+header{
+    font-size: 6em;
+    box-sizing: border-box;
+    font-family: 'Audiowide', cursive;
+    text-transform: uppercase;
+    text-align: center;
+    color: white;
+}
+img {
+    position: fixed;
+    width: 150px;
+    height: 150px;
+}
+.left {
+    top:-10px;
+    left: 225px;
+}
+.right {
+    top: -10px;
+}
 #map {
     width: 950px;
     height: 750px;
     position: relative;
-    border: 1px solid black;
-    margin:10% auto;
+    margin:0 auto;
+
+}
+p, a {
+    font-family: 'Audiowide', cursive;
+    font-size: 4em;
+    text-align: center;
+    color:red;
+    margin-top: 250px;
+}
+button {
+    margin-left: 37%;
+    border-radius: 10%;
+}
+#win {
+    display: none;
+    z-index: 10;
+    width: 950px;
+    height: 750px;
+    position: absolute;
+    background-color: rgba(48, 44, 44, 0.9);;
+}
+#lose{
+    display: none;
+    z-index: 10;
+    width: 950px;
+    height: 750px;
+    position: absolute;
+    background-color: rgba(48, 44, 44, 0.9);
 }
 .frame {
     width: 50px;

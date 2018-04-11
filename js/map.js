@@ -40,11 +40,11 @@ function drawMap(){
                 map.appendChild(floor);
             }
             else if(grille[i][j] == 2){
-             brick = document.createElement("div");
-             brick.setAttribute("class", "brick");
-             map.appendChild(brick);
-         }
-         else if(grille[i][j] == 3){
+               brick = document.createElement("div");
+               brick.setAttribute("class", "brick");
+               map.appendChild(brick);
+           }
+           else if(grille[i][j] == 3){
             wall = document.createElement("div");
             wall.setAttribute("class", "wall");
             map.appendChild(wall);
