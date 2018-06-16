@@ -2,4 +2,4 @@
 
 ACS project
 
-JavaScript Bomberman retro-like
+JavaScript Bomberman game retro-like
